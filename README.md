@@ -14,4 +14,4 @@ During the operation of the program, you can configure the following things:
 - Auto-clicker activation button
 - The frequency of click execution
 - Choose between an autoclicker on the mouse or keyboard
-- The language in which the program will work (5 available)
+- The language in which the program will work (5 will be available(now 1))
