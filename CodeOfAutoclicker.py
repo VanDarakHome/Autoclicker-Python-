@@ -110,3 +110,66 @@ if Language == '3':
 
     if __name__ == "__main__":
         main()
+if Language == '2':
+    def main():
+        print("Choose the type of autoclicker:")
+        print("1. Mouse")
+        print("2. Keyboard")
+        choice = input("Enter 1 or 2: ")
+
+        if choice == '1':
+            target = 'mouse'
+            print("Choose the mouse button:")
+            print("1. Left button")
+            print("2. Right button")
+            mouse_choice = input("Enter 1 or 2: ")
+            if mouse_choice == '1':
+                mouse_button = 'left'
+            elif mouse_choice == '2':
+                mouse_button = 'right'
+            else:
+                print("Incorrect input. Please restart the program and enter 1 or 2 next time.")
+                return
+        elif choice == '2':
+            target = 'keyboard'
+        else:
+            print("Incorrect input. Please restart the program and enter 1 or 2 next time.")
+            return
+
+        trigger_key = input("Input the button to activate the autoclicker: ")
+        click_interval = float(input("Input click repeater in seconds: "))
+
+        if target == 'keyboard':
+            click_key = input("Input the key on the keyboard: ")
+        else:
+            click_key = None
+
+        print(f"Нажмите {trigger_key} для активации автокликера.")
+
+        active = False
+
+        def toggle_autoclicker(e):
+            nonlocal active
+            if e.name == trigger_key:
+                active = not active
+                if active:
+                    print("Autoclicker activated.")
+                else:
+                    print("Autoclicker deactivated.")
+
+        keyboard.on_press(toggle_autoclicker)
+
+        try:
+            while True:
+                if active:
+                    if target == 'mouse':
+                        mouse.click(mouse_button)
+                    elif target == 'keyboard':
+                        keyboard.send(click_key)
+                    time.sleep(click_interval)
+                time.sleep(0.01)
+        except KeyboardInterrupt:
+            print("Autoclicker has been stoped.")
+
+    if __name__ == "__main__":
+        main()
